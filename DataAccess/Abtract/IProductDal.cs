@@ -1,4 +1,5 @@
 ﻿using Core.DataAccsess;
+using Core.Utilities.Results;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;
@@ -13,5 +14,6 @@ namespace DataAccess.Abtract
     {
 
         List<ProductDetailDto> GetProductDetails();
+        IDataResult<Product> Get(int productId);
     }
 }

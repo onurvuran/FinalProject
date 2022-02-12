@@ -10,6 +10,7 @@ namespace Business.Abtract
     public interface ICategoryService
     {
         List<Category> GetAll();
-        Category GetById(int categoryId); 
+        Category GetById(int categoryId);
+        
     }
 }

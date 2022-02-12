@@ -1,4 +1,6 @@
 ﻿using Business.Abtract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abtract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -20,17 +22,36 @@ namespace Business.Concrete
             _productDal = productDal;
         }
 
-        public List<Product> GetAll()
+        public IResult Add(Product product)
         {
 
-            //work code 
-            //are you  have a accsess ?
-          return _productDal.GetAll();
+            if (product.ProductName.Length>2)
+            {   //magic string
+                return new ErrorResult(Messages.ProductNameInvalid);
+
+            }
+           _productDal.Add(product);
+            return new SuccessResult(Messages.ProductAdded);
+        }
+
+        public IDataResult<List<Product>> GetAll()
+        {
+
+            if (DateTime.Now.Hour==22)
+            {
+                return new ErrorDataResult();
+            }
+          return new SuccessDataResult<List<Product>>(_productDal.GetAll(),true,"Ürünler Listelendi");
         }
 
         public List<Product> GetAllByCategoryId(int id)
         {
             return _productDal.GetAll(p=> p.CategoryId==id);
+        }
+
+        public IDataResult<Product> GetById(int productId)
+        {
+            return _productDal.Get(productId);
         }
 
         public List<Product> GetByUnitPrice(decimal min, decimal max)
@@ -41,6 +62,11 @@ namespace Business.Concrete
         public List<ProductDetailDto> GetProductDetails()
         {
             return _productDal.GetProductDetails();
+        }
+
+        IDataResult<List<Product>> IProductService.GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }
