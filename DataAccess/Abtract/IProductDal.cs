@@ -14,6 +14,6 @@ namespace DataAccess.Abtract
     {
 
         List<ProductDetailDto> GetProductDetails();
-        IDataResult<Product> Get(int productId);
+       
     }
 }

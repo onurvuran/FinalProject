@@ -1,4 +1,5 @@
-﻿using DataAccess.Abtract;
+﻿using Core.Utilities.Results;
+using DataAccess.Abtract;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;
@@ -40,6 +41,11 @@ namespace DataAccess.Concrete.InMemory
         }
 
         public Product Get(Expression<Func<Product, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDataResult<Product> Get(int productId)
         {
             throw new NotImplementedException();
         }

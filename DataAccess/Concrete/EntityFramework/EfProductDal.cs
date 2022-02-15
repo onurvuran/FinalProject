@@ -1,4 +1,5 @@
 ﻿using Core.DataAccess.EntityFramework;
+using Core.Utilities.Results;
 using DataAccess.Abtract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -14,6 +15,8 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfProductDal : EfEnityRepositoryBase<Product, NortwindContext>, IProductDal
     {
+        
+
         public List<ProductDetailDto> GetProductDetails()
         {
             using (NortwindContext context = new NortwindContext())
